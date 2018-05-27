@@ -1,0 +1,7 @@
+{
+	"workbench.colorTheme": "Default Dark+",
+	"reason.diagnostics.tools": ["merlin", "bsb"],
+	"editor.formatOnSave": true,
+	"reason.codelens.enabled": true,
+	"eslint.enable": false
+}
