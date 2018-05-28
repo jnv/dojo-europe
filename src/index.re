@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId(<Map />, "main");
+ReactDOMRe.renderToElementWithId(<Main />, "main");

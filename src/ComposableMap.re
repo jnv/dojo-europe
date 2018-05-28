@@ -1,14 +1,15 @@
 [@bs.module "react-simple-maps"]
 external composableMap : ReasonReact.reactClass = "ComposableMap";
 
-type projection = {
+[@bs.deriving abstract]
+type projectionT = {
   scale: int,
   rotation: array(int),
 };
 
 [@bs.deriving abstract]
 type jsProps = {
-  projectionConfig: projection,
+  projectionConfig: projectionT,
   width: int,
   height: int,
 };

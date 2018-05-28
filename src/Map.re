@@ -28,11 +28,28 @@ let geoStyle =
       ),
   );
 
-let make = _children => {
+let markerStyle =
+  Geography.styleT(
+    ~default=ReactDOMRe.Style.make(~fill="red", ()),
+    ~hover=ReactDOMRe.Style.make(~fill="red", ()),
+    ~pressed=ReactDOMRe.Style.make(~fill="red", ()),
+  );
+/*
+ let markerList: array(Marker.markerT) = [|
+   Marker.markerT(
+     ~coordinates=((-58.3816), (-34.6037)|],
+     ~name="Pico vole",
+     ~markerOffset=-25,
+   ),
+ |]; */
+
+let make = (~markers, _children) => {
   ...component,
   render: _self =>
     <ComposableMap
-      projectionConfig={scale: 200, rotation: [|(-11), 0, 0|]}
+      projectionConfig=(
+        ComposableMap.projectionT(~scale=200, ~rotation=[|0, 0, 0|])
+      )
       width=980
       height=551>
       <ZoomableGroup center=(0, 20) disablePanning=true>
@@ -50,6 +67,19 @@ let make = _children => {
                     )
              )
         </Geographies>
+        <Markers>
+          ...(
+               markers
+               |> Array.map(markerItem =>
+                    <Marker marker=markerItem style=markerStyle>
+                      <circle cx="0" cy="0" r="10" />
+                      <text>
+                        (ReasonReact.string(Marker.name(markerItem)))
+                      </text>
+                    </Marker>
+                  )
+             )
+        </Markers>
       </ZoomableGroup>
     </ComposableMap>,
 };
